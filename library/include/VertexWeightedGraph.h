@@ -1,8 +1,11 @@
+#pragma once
+
 #include "IGraph.h"
 
 class VertexWeightedGraph : public IGraph {
 public:
   explicit VertexWeightedGraph(std::vector<Vertex> vertices, bool is_oriented);
+  ~VertexWeightedGraph() override = default;
 
   void AddEdge(size_t from, size_t to) final;
 
@@ -16,7 +19,9 @@ public:
   void GetEdges(std::vector<Edge> &edges) const final;
   void GetVertices(std::vector<Vertex> &vertices) const final;
 
-private:
+  void Print(std::ofstream& stream) const final;
+
+protected:
   std::vector<Vertex> vertices_;
   std::vector<Edge> edges_;
 

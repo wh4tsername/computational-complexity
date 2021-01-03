@@ -1,3 +1,5 @@
+#pragma once
+
 #include <IGraph.h>
 
 class MinVertexCoverSolver {

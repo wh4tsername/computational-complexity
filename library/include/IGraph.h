@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <fstream>
 
 struct Vertex {
   Vertex(size_t id, int weight) : id_(id), weight_(weight) {}
@@ -41,4 +42,6 @@ public:
 
   virtual void GetEdges(std::vector<Edge> &edges) const = 0;
   virtual void GetVertices(std::vector<Vertex> &vertices) const = 0;
+
+  virtual void Print(std::ofstream& stream) const = 0;
 };
