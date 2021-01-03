@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef IGRAPH_VERTEX_WEIGHTED_GRAPH
+#define IGRAPH_VERTEX_WEIGHTED_GRAPH
+
 #include "IGraph.h"
 
 class VertexWeightedGraph : public IGraph {
@@ -27,3 +30,5 @@ protected:
 
   bool is_oriented_;
 };
+
+#endif

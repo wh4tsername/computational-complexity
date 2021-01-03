@@ -1,4 +1,4 @@
-set(SOLVER_SOURCES main.cpp MinVertexCoverSolver.cpp)
+set(SOLVER_SOURCES main.cpp MinVertexCoverSolver.cpp CorrectnessChecker.cpp)
 
 add_executable(test ${SOLVER_SOURCES})
 

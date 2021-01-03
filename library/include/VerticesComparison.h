@@ -1,5 +1,10 @@
 #pragma once
 
+#ifndef IGRAPH_VERTICES_COMPARISON
+#define IGRAPH_VERTICES_COMPARISON
+
+#include "IGraph.h"
+
 inline bool operator<(const Vertex &lhs, const Vertex &rhs) {
   return lhs.id_ < rhs.id_;
 }
@@ -15,3 +20,4 @@ struct vertex_hash {
   }
 };
 
+#endif

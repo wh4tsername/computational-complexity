@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef IGRAPH_NON_ORIENTED_EDGE_COMPARISON
+#define IGRAPH_NON_ORIENTED_EDGE_COMPARISON
+
 #include "VerticesComparison.h"
 
 // non-oriented edge comparison
@@ -14,3 +17,5 @@ struct edge_hash {
     return hash(obj.from_.id_) ^ hash(obj.to_.id_);
   }
 };
+
+#endif

@@ -1,51 +1,8 @@
 #include "MinVertexCoverSolver.h"
+#include "CorrectnessChecker.h"
 
 #include <cstdint>
 #include <unordered_set>
-
-#include <Helpers.h>
-#include <NonOrientedEdgeComparison.h>
-
-bool get_ith_bit(size_t num, size_t i) { return (num >> i) & 1; }
-void set_ith_bit(size_t &num, size_t i) { num |= (1 << i); }
-
-void get_distinct_edges(std::vector<Edge> &edges) {
-  std::unordered_set<Edge, edge_hash> distinct_edges_set;
-  for (Edge edge : edges) {
-    distinct_edges_set.insert(edge);
-  }
-
-  edges.clear();
-  for (auto [from, to] : distinct_edges_set) {
-    edges.emplace_back(from, to);
-  }
-}
-
-bool is_vertex_cover(size_t bitmask, const std::vector<Vertex> &vertices,
-                     const std::vector<Edge> &distinct_edges) {
-  std::vector<bool> edge_mask(distinct_edges.size(), false);
-  for (size_t i = 0; i < vertices.size(); ++i) {
-    if (get_ith_bit(bitmask, i)) {
-      for (size_t edge_id = 0; edge_id < distinct_edges.size(); ++edge_id) {
-        if (!edge_mask[edge_id] &&
-            (distinct_edges[edge_id].from_ == vertices[i] ||
-             distinct_edges[edge_id].to_ == vertices[i])) {
-          edge_mask[edge_id] = true;
-        }
-      }
-    }
-  }
-
-  bool flag = true;
-  for (auto &&bit : edge_mask) {
-    if (!bit) {
-      flag = false;
-      break;
-    }
-  }
-
-  return flag;
-}
 
 std::vector<Vertex> MinVertexCoverSolver::GetMinimum(const IGraph &graph) {
   std::vector<Vertex> vertices;
@@ -139,9 +96,6 @@ MinVertexCoverSolver::GetApproximation(const IGraph &graph) {
     set_ith_bit(mask, vertex.id_);
     vertex_cover_vector.emplace_back(vertex);
   }
-
-  PANIC(!is_vertex_cover(mask, vertices, edges),
-        "Found set of vertices isn't a vertex cover!")
 
   return vertex_cover_vector;
 }

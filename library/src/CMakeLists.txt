@@ -2,6 +2,7 @@ set(
         FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/VertexWeightedGraph.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/RandomVertexWeightedGraph.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/Helpers.cpp
 )
 set(SUBDIRECTORIES "")
 set(RELATIVE_PATH src)

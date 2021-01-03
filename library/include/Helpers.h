@@ -1,5 +1,10 @@
 #pragma once
 
+#include <vector>
+#include <unordered_set>
+
+#include "NonOrientedEdgeComparison.h"
+
 #define ASSERT(condition, message)                                             \
   {                                                                            \
     if (condition) {                                                           \
@@ -14,3 +19,8 @@
       throw std::runtime_error(message);                                       \
     }                                                                          \
   }
+
+bool get_ith_bit(size_t num, size_t i);
+void set_ith_bit(size_t &num, size_t i);
+
+void get_distinct_edges(std::vector<Edge> &edges);

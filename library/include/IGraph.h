@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef IGRAPH_IGRAPH
+#define IGRAPH_IGRAPH
+
 #include <vector>
 #include <fstream>
 
@@ -37,3 +40,5 @@ public:
 
   virtual void Print(std::ofstream& stream) const = 0;
 };
+
+#endif
