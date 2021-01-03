@@ -1,4 +1,9 @@
-set(LIBRARY_SOURCES include/IGraph.h include/VertexWeightedGraph.h src/VertexWeightedGraph.cpp)
+set(
+        LIBRARY_SOURCES
+        include/IGraph.h
+        include/VertexWeightedGraph.h
+        src/VertexWeightedGraph.cpp
+)
 set(LIBRARY_NAME IGraph)
 
 option(BUILD_SHARED_LIBS True)
@@ -12,9 +17,9 @@ target_include_directories(
         $<INSTALL_INTERFACE:include> #${CMAKE_INSTALL_PREFIX}/include
 )
 
-include("GenerateExportHeader")
-generate_export_header("${LIBRARY_NAME}")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/export.h" DESTINATION "include")
+include(GenerateExportHeader)
+generate_export_header(${LIBRARY_NAME})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/export.h DESTINATION include)
 
-add_subdirectory("include")
-add_subdirectory("src")
+add_subdirectory(include)
+add_subdirectory(src)

@@ -134,7 +134,7 @@ MinVertexCoverSolver::GetApproximation(const IGraph &graph) {
   }
 
   size_t mask = 0;
-  std::vector<Vertex> vertex_cover_vector(vertex_cover.size());
+  std::vector<Vertex> vertex_cover_vector;
   for (auto &&vertex : vertex_cover) {
     set_ith_bit(mask, vertex.id_);
     vertex_cover_vector.emplace_back(vertex);

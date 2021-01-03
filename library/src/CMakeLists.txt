@@ -1,6 +1,10 @@
-set(FILES "${CMAKE_CURRENT_SOURCE_DIR}/VertexWeightedGraph.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/RandomVertexWeightedGraph.cpp")
+set(
+        FILES
+        ${CMAKE_CURRENT_SOURCE_DIR}/VertexWeightedGraph.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/RandomVertexWeightedGraph.cpp
+)
 set(SUBDIRECTORIES "")
-set(RELATIVE_PATH "src")
+set(RELATIVE_PATH src)
 
 #Add all subdirectories 
 foreach(VAR ${SUBDIRECTORIES})
@@ -9,7 +13,7 @@ endforeach()
 
 if(FILES)
     #Add source files to target
-    target_sources("${LIBRARY_NAME}" PRIVATE ${FILES})
+    target_sources(${LIBRARY_NAME} PRIVATE ${FILES})
 
     #Install our source files
     install(FILES ${FILES} DESTINATION ${RELATIVE_PATH})
