@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 
+#include <VertexWeightedGraph.h>
 #include "MinVertexCoverSolver.h"
-#include "VertexWeightedGraph.h"
 
 #define ASSERT(condition, message)                                             \
   {                                                                            \

@@ -1,4 +1,4 @@
-#include "VertexWeightedGraph.h"
+#include "../include/VertexWeightedGraph.h"
 
 #include <algorithm>
 

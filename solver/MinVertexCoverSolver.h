@@ -1,4 +1,4 @@
-#include "IGraph.h"
+#include <IGraph.h>
 
 class MinVertexCoverSolver {
 public:
