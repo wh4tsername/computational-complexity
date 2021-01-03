@@ -10,14 +10,6 @@ struct Vertex {
   int weight_;
 };
 
-inline bool operator<(const Vertex &lhs, const Vertex &rhs) {
-  return lhs.id_ < rhs.id_;
-}
-
-inline bool operator==(const Vertex &lhs, const Vertex &rhs) {
-  return lhs.id_ == rhs.id_;
-}
-
 struct Edge {
   Edge(Vertex from, Vertex to) : from_(from), to_(to) {}
 

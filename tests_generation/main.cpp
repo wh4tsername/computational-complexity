@@ -8,7 +8,7 @@ int main(int argc, char **argv) {
   ostream << num_tests << std::endl << std::endl;
 
   for (size_t i = 0; i < num_tests; ++i) {
-    RandomVertexWeightedGraph graph(7, 1, {0, 1000}, false);
+    RandomVertexWeightedGraph graph(3, 1, {0, 1000}, false);
 
     graph.Print(ostream);
     ostream << std::endl;
