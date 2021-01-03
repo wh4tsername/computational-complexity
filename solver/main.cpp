@@ -3,15 +3,9 @@
 #include <string>
 
 #include <VertexWeightedGraph.h>
-#include "MinVertexCoverSolver.h"
+#include <Helpers.h>
 
-#define ASSERT(condition, message)                                             \
-  {                                                                            \
-    if (condition) {                                                           \
-      std::cerr << message << std::endl;                                       \
-      exit(1);                                                                 \
-    }                                                                          \
-  }
+#include "MinVertexCoverSolver.h"
 
 void test(const IGraph &graph, std::ofstream &log_ostream) {
   std::vector<Vertex> approx_vertex_cover =
@@ -31,6 +25,9 @@ void test(const IGraph &graph, std::ofstream &log_ostream) {
   }
 
   log_ostream << optimal_total << std::endl;
+
+  PANIC(approx_total < optimal_total || approx_total > 2 * optimal_total,
+        "Algorithm failure!")
 }
 
 int main(int argc, char **argv) {

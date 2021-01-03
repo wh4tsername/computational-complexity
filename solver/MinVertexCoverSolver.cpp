@@ -2,48 +2,10 @@
 
 #include <cstdint>
 
-std::vector<Vertex>
-MinVertexCoverSolver::GetApproximation(const IGraph &graph) {
-  std::vector<Vertex> vertices;
-  graph.GetVertices(vertices);
-
-  std::vector<Edge> edges;
-  graph.GetEdges(edges);
-
-  std::vector<int> remaining_weights(graph.VerticesCount());
-  for (auto &&vertex : vertices) {
-    remaining_weights[vertex.id_] = vertex.weight_;
-  }
-
-  std::vector<Vertex> vertex_cover;
-
-  std::vector<size_t> prices(graph.EdgesCount());
-  for (size_t edge_id = 0; edge_id < edges.size(); ++edge_id) {
-    Edge &edge = edges[edge_id];
-    Vertex &from = edge.from_;
-    Vertex &to = edge.to_;
-
-    if (remaining_weights[from.id_] == 0 || remaining_weights[to.id_] == 0) {
-      continue;
-    }
-
-    bool flag = remaining_weights[from.id_] < remaining_weights[to.id_];
-    Vertex &smaller = flag ? from : to;
-    Vertex &bigger = flag ? to : from;
-
-    size_t smaller_weight = remaining_weights[smaller.id_];
-    prices[edge_id] = smaller_weight;
-
-    remaining_weights[smaller.id_] -= smaller_weight;
-    remaining_weights[bigger.id_] -= smaller_weight;
-
-    vertex_cover.emplace_back(smaller);
-  }
-
-  return vertex_cover;
-}
+#include <Helpers.h>
 
 bool get_ith_bit(size_t num, size_t i) { return (num >> i) & 1; }
+void set_ith_bit(size_t &num, size_t i) { num |= (1 << i); }
 
 bool is_vertex_cover(size_t bitmask, const std::vector<Vertex> &vertices,
                      const std::vector<Edge> &edges) {
@@ -78,7 +40,7 @@ std::vector<Vertex> MinVertexCoverSolver::GetMinimum(const IGraph &graph) {
 
   size_t min_weight = UINT32_MAX;
   size_t cover_mask = 0;
-  for (size_t bitmask = 1; bitmask < (1 << graph.VerticesCount()); ++bitmask) {
+  for (size_t bitmask = 0; bitmask < (1 << graph.VerticesCount()); ++bitmask) {
     if (is_vertex_cover(bitmask, vertices, edges)) {
       size_t total = 0;
 
@@ -101,6 +63,58 @@ std::vector<Vertex> MinVertexCoverSolver::GetMinimum(const IGraph &graph) {
       vertex_cover.emplace_back(vertices[i]);
     }
   }
+
+  return vertex_cover;
+}
+
+std::vector<Vertex>
+MinVertexCoverSolver::GetApproximation(const IGraph &graph) {
+  std::vector<Vertex> vertices;
+  graph.GetVertices(vertices);
+
+  std::vector<Edge> edges;
+  graph.GetEdges(edges);
+
+  std::vector<int> remaining_weights(graph.VerticesCount());
+  for (auto &&vertex : vertices) {
+    remaining_weights[vertex.id_] = vertex.weight_;
+  }
+
+  std::vector<Vertex> vertex_cover;
+
+  std::vector<size_t> prices(graph.EdgesCount() * 2);
+  for (size_t edge_id = 0; edge_id < edges.size(); ++edge_id) {
+    Edge &edge = edges[edge_id];
+    Vertex &from = edge.from_;
+    Vertex &to = edge.to_;
+
+    if (remaining_weights[from.id_] == 0 || remaining_weights[to.id_] == 0) {
+      continue;
+    }
+
+    bool flag = remaining_weights[from.id_] < remaining_weights[to.id_];
+    Vertex &smaller = flag ? from : to;
+    Vertex &bigger = flag ? to : from;
+
+    size_t smaller_weight = remaining_weights[smaller.id_];
+    prices[edge_id] = smaller_weight;
+
+    remaining_weights[smaller.id_] -= smaller_weight;
+    remaining_weights[bigger.id_] -= smaller_weight;
+
+    vertex_cover.emplace_back(smaller);
+    if (remaining_weights[bigger.id_] == 0) {
+      vertex_cover.emplace_back(bigger);
+    }
+  }
+
+  size_t mask = 0;
+  for (auto &&vertex : vertex_cover) {
+    set_ith_bit(mask, vertex.id_);
+  }
+
+  PANIC(!is_vertex_cover(mask, vertex_cover, edges),
+        "Found set of vertices isn't vertex cover!")
 
   return vertex_cover;
 }
