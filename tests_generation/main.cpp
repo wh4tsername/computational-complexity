@@ -53,8 +53,13 @@ void random_test(std::ofstream &ostream, size_t num_tests) {
 }
 
 int main(int argc, char **argv) {
+  ASSERT(argc != 3,
+         "Pass output file path, number of tests to generate and test flag!")
+
   std::string output_path(argv[1]);
   std::ofstream ostream(output_path, std::ofstream::trunc);
+
+  ASSERT(!ostream.is_open(), "Can't open " + output_path + "!")
 
   size_t num_tests = std::stoi(std::string(argv[2]));
 

@@ -43,8 +43,18 @@ void test(const IGraph &graph, std::ofstream &log_ostream,
   if (!optimal_solver_off) {
     log_ostream << "\t";
 
+    // time measurement
+    start_tp = steady_clock::now();
+
     std::vector<Vertex> optimal_vertex_cover =
         MinVertexCoverSolver::GetMinimum(graph);
+
+    end_tp = steady_clock::now();
+    time = static_cast<double>(
+               duration_cast<microseconds>(end_tp - start_tp).count()) /
+           1000;
+    log_ostream << std::setprecision(3) << time << "\t";
+
     size_t optimal_total = 0;
     for (Vertex vertex : optimal_vertex_cover) {
       optimal_total += vertex.weight_;

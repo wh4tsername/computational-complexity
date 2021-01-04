@@ -6,12 +6,12 @@
 
 #include "Tester.h"
 
-const size_t TEST_PRINT_FREQUENCY = 1;
+const size_t TEST_PRINT_FREQUENCY = 100;
 
 int main(int argc, char **argv) {
   ASSERT(
       argc != 3 && argc != 4,
-      "Pass test file path and log directory as arguments and flag, if needed!")
+      "Pass test file path, log directory (and flag, if needed) as arguments!")
 
   std::string test_path(argv[1]);
   std::string log_dir(argv[2]);
