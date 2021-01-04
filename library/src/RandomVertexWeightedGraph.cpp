@@ -3,8 +3,8 @@
 #include <random>
 
 RandomVertexWeightedGraph::RandomVertexWeightedGraph(
-    size_t num_vertices, double p,
-    std::pair<size_t, size_t> weight_bounds, bool is_oriented)
+    size_t num_vertices, double p, std::pair<size_t, size_t> weight_bounds,
+    bool is_oriented)
     : VertexWeightedGraph({}, is_oriented) {
   std::random_device dev;
   std::mt19937 rng(dev());

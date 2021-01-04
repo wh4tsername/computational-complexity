@@ -3,8 +3,8 @@
 #ifndef IGRAPH_HELPERS
 #define IGRAPH_HELPERS
 
-#include <vector>
 #include <unordered_set>
+#include <vector>
 
 #include "NonOrientedEdgeComparison.h"
 

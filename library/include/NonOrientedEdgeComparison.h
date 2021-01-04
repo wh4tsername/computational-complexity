@@ -12,7 +12,7 @@ inline bool operator==(const Edge &lhs, const Edge &rhs) {
 }
 
 struct edge_hash {
-  inline std::size_t operator()(const Edge& obj) const {
+  inline std::size_t operator()(const Edge &obj) const {
     std::hash<size_t> hash;
     return hash(obj.from_.id_) ^ hash(obj.to_.id_);
   }

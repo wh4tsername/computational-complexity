@@ -14,7 +14,7 @@ inline bool operator==(const Vertex &lhs, const Vertex &rhs) {
 }
 
 struct vertex_hash {
-  inline std::size_t operator()(const Vertex& obj) const {
+  inline std::size_t operator()(const Vertex &obj) const {
     std::hash<size_t> hash;
     return hash(obj.id_);
   }

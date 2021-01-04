@@ -19,7 +19,7 @@ void test(const IGraph &graph, std::ofstream &log_ostream,
   }
 
   PANIC(!is_vertex_cover(graph, approx_vertex_cover),
-      "Found set of vertices(approx) isn't a vertex cover!")
+        "Found set of vertices(approx) isn't a vertex cover!")
 
   log_ostream << approx_total << std::endl;
 

@@ -22,7 +22,7 @@ public:
   void GetEdges(std::vector<Edge> &edges) const final;
   void GetVertices(std::vector<Vertex> &vertices) const final;
 
-  void Print(std::ofstream& stream) const final;
+  void Print(std::ofstream &stream) const final;
 
 protected:
   std::vector<Vertex> vertices_;

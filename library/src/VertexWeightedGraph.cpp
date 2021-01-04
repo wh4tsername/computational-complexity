@@ -20,7 +20,9 @@ void VertexWeightedGraph::AddEdge(size_t from, size_t to) {
 
 size_t VertexWeightedGraph::VerticesCount() const { return vertices_.size(); }
 
-size_t VertexWeightedGraph::EdgesCount() const { return IsOriented() ? edges_.size() : distinct_edges_.size(); }
+size_t VertexWeightedGraph::EdgesCount() const {
+  return IsOriented() ? edges_.size() : distinct_edges_.size();
+}
 
 bool VertexWeightedGraph::IsOriented() const { return is_oriented_; }
 
@@ -62,7 +64,7 @@ void VertexWeightedGraph::GetVertices(std::vector<Vertex> &vertices) const {
   vertices = vertices_;
 }
 
-void VertexWeightedGraph::Print(std::ofstream& stream) const {
+void VertexWeightedGraph::Print(std::ofstream &stream) const {
   stream << VerticesCount() << " " << EdgesCount() << std::endl;
 
   for (Vertex vertex : vertices_) {
@@ -71,11 +73,11 @@ void VertexWeightedGraph::Print(std::ofstream& stream) const {
   stream << std::endl;
 
   if (!IsOriented()) {
-    for (auto&& edge : distinct_edges_) {
+    for (auto &&edge : distinct_edges_) {
       stream << edge.from_.id_ << " " << edge.to_.id_ << std::endl;
     }
   } else {
-    for (auto&& edge : edges_) {
+    for (auto &&edge : edges_) {
       stream << edge.from_.id_ << " " << edge.to_.id_ << std::endl;
     }
   }
