@@ -10,7 +10,6 @@ std::vector<Vertex> MinVertexCoverSolver::GetMinimum(const IGraph &graph) {
 
   std::vector<Edge> edges;
   graph.GetEdges(edges);
-  get_distinct_edges(edges);
 
   size_t min_weight = UINT32_MAX;
   size_t cover_mask = 0;
@@ -48,7 +47,6 @@ MinVertexCoverSolver::GetApproximation(const IGraph &graph) {
 
   std::vector<Edge> edges;
   graph.GetEdges(edges);
-  get_distinct_edges(edges);
 
   std::vector<int> remaining_weights(graph.VerticesCount());
   for (auto &&vertex : vertices) {

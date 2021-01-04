@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef IGRAPH_HELPERS
+#define IGRAPH_HELPERS
+
 #include <vector>
 #include <unordered_set>
 
@@ -23,4 +26,4 @@
 bool get_ith_bit(size_t num, size_t i);
 void set_ith_bit(size_t &num, size_t i);
 
-void get_distinct_edges(std::vector<Edge> &edges);
+#endif

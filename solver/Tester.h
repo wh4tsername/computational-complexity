@@ -7,6 +7,10 @@
 
 void test(const IGraph &graph, std::ofstream &log_ostream,
           bool optimal_solver_off) {
+  graph.Print(log_ostream);
+
+  log_ostream << std::endl;
+
   std::vector<Vertex> approx_vertex_cover =
       MinVertexCoverSolver::GetApproximation(graph);
   size_t approx_total = 0;

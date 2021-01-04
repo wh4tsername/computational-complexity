@@ -6,6 +6,8 @@
 
 #include "Tester.h"
 
+const size_t TEST_PRINT_FREQUENCY = 1;
+
 int main(int argc, char **argv) {
   ASSERT(
       argc != 3 && argc != 4,
@@ -59,7 +61,7 @@ int main(int argc, char **argv) {
       log_ostream << std::endl;
     }
 
-    if ((test_id + 1) % 10 == 0 || test_id == num_tests - 1) {
+    if ((test_id + 1) % TEST_PRINT_FREQUENCY == 0 || test_id == num_tests - 1) {
       std::cerr << test_id + 1 << " tests passed!" << std::endl;
     }
   }

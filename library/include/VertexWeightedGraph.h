@@ -27,6 +27,7 @@ public:
 protected:
   std::vector<Vertex> vertices_;
   std::vector<Edge> edges_;
+  std::vector<Edge> distinct_edges_;
 
   bool is_oriented_;
 };

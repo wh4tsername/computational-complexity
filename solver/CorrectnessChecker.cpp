@@ -33,7 +33,6 @@ bool is_vertex_cover(const IGraph &graph,
 
   std::vector<Edge> edges;
   graph.GetEdges(edges);
-  get_distinct_edges(edges);
 
   size_t bitmask = 0;
   for (Vertex vertex : vertex_cover) {
