@@ -4,9 +4,9 @@
 #include <iostream>
 #include <random>
 
-enum class TEST_CASE { None = 0, Random, Corner };
+enum class TEST_CASE { None = 0, Random, Corner, PFixed };
 
-const size_t TEST_PRINT_FREQUENCY = 1;
+const size_t TEST_PRINT_FREQUENCY = 10;
 
 void corner_test(std::ofstream &ostream, size_t num_tests) {
   ostream << num_tests << std::endl << std::endl;
@@ -41,7 +41,22 @@ void random_test(std::ofstream &ostream, size_t num_tests) {
   ostream << num_tests << std::endl << std::endl;
 
   for (size_t i = 0; i < num_tests; ++i) {
-    RandomVertexWeightedGraph graph(500, 0.5, {0, 1000}, false);
+    RandomVertexWeightedGraph graph(500, 0.7, {0, 1000}, false);
+
+    graph.Print(ostream);
+    ostream << std::endl;
+
+    if ((i + 1) % TEST_PRINT_FREQUENCY == 0 || i == num_tests - 1) {
+      std::cerr << i + 1 << " graphs generated!" << std::endl;
+    }
+  }
+}
+
+void random_p_fixed(std::ofstream &ostream, size_t num_tests) {
+  ostream << num_tests << std::endl << std::endl;
+
+  for (size_t i = 3; i <= num_tests + 2; ++i) {
+    RandomVertexWeightedGraph graph(i, 0.9, {0, 1000}, false);
 
     graph.Print(ostream);
     ostream << std::endl;
@@ -53,7 +68,7 @@ void random_test(std::ofstream &ostream, size_t num_tests) {
 }
 
 int main(int argc, char **argv) {
-  ASSERT(argc != 3,
+  ASSERT(argc != 4,
          "Pass output file path, number of tests to generate and test flag!")
 
   std::string output_path(argv[1]);
@@ -69,6 +84,8 @@ int main(int argc, char **argv) {
     test_case = TEST_CASE::Random;
   } else if (flag_str == "--corner") {
     test_case = TEST_CASE::Corner;
+  } else if (flag_str == "--pfixed") {
+    test_case = TEST_CASE::PFixed;
   } else {
     ASSERT(true, "Unknown flag!");
   }
@@ -79,6 +96,9 @@ int main(int argc, char **argv) {
     break;
   case TEST_CASE::Corner:
     corner_test(ostream, num_tests);
+    break;
+  case TEST_CASE::PFixed:
+    random_p_fixed(ostream, num_tests);
     break;
   case TEST_CASE::None:
     break;
