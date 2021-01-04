@@ -6,7 +6,7 @@
 
 #include "Tester.h"
 
-const size_t TEST_PRINT_FREQUENCY = 100;
+const size_t TEST_PRINT_FREQUENCY = 1;
 
 int main(int argc, char **argv) {
   ASSERT(
@@ -22,11 +22,16 @@ int main(int argc, char **argv) {
     optimal_solver_off = true;
   }
 
+  size_t slash_index = test_path.find_last_of('/');
+  size_t dot_index = test_path.find_last_of('.');
+
+  std::string name(test_path.substr(slash_index + 1, dot_index - slash_index - 1));
+
   std::ifstream test_istream(test_path);
-  std::ofstream log_ostream(log_dir + "log.csv", std::ofstream::trunc);
+  std::ofstream log_ostream(log_dir + name +".csv", std::ofstream::trunc);
 
   ASSERT(!test_istream.is_open(), "Can't open test file!")
-  ASSERT(!log_ostream.is_open(), "Can't create log.csv in log directory!")
+  ASSERT(!log_ostream.is_open(), "Can't create " + name + ".csv in log directory!")
 
   // log header
   log_ostream << "|V|\t|E|\ttime\tapprox";

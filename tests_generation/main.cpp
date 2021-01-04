@@ -15,24 +15,17 @@ void corner_test(std::ofstream &ostream, size_t num_tests) {
   std::mt19937 rng(dev());
 
   for (size_t i = 0; i < num_tests; ++i) {
-    size_t num_vertices = i + 3;
+    size_t num_vertices = i + 2;
+
     std::vector<Vertex> vertices;
     for (size_t vertex_id = 0; vertex_id < num_vertices; ++vertex_id) {
-      if (vertex_id == 0 || vertex_id == 1) {
-        vertices.emplace_back(vertex_id, 2);
-      } else {
-        vertices.emplace_back(vertex_id, 1);
-      }
+      vertices.emplace_back(vertex_id, 1);
     }
 
     VertexWeightedGraph graph(vertices, false);
 
-    for (size_t from = 0; from <= num_vertices / 2 + 1; ++from) {
+    for (size_t from = 0; from < num_vertices - 1; ++from) {
       graph.AddEdge(from, from + 1);
-    }
-
-    for (size_t from = 1; from < num_vertices / 2; ++from) {
-      graph.AddEdge(from, from + num_vertices / 2 + 1);
     }
 
     graph.Print(ostream);

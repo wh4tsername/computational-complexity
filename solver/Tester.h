@@ -15,10 +15,6 @@ using std::chrono::steady_clock;
 
 void test(const IGraph &graph, std::ofstream &log_ostream,
           bool optimal_solver_off) {
-  //  graph.Print(log_ostream);
-
-  //  log_ostream << std::endl;
-
   log_ostream << graph.VerticesCount() << "\t";
   log_ostream << graph.EdgesCount() << "\t";
 
@@ -29,7 +25,9 @@ void test(const IGraph &graph, std::ofstream &log_ostream,
       MinVertexCoverSolver::GetApproximation(graph);
 
   auto end_tp = steady_clock::now();
-  double time = static_cast<double>(duration_cast<microseconds>(end_tp - start_tp).count()) / 1000;
+  double time = static_cast<double>(
+                    duration_cast<microseconds>(end_tp - start_tp).count()) /
+                1000;
   log_ostream << std::setprecision(3) << time << "\t";
 
   size_t approx_total = 0;

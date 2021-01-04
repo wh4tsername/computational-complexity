@@ -9,4 +9,4 @@
 - ### random7.txt -> G(100, 1) 100 tests - optimal solver off
 
 ## Corner case graphs:
-- ### corner.txt -> 16 graphs, such as worst approximation reached  
+- ### corner.txt -> 20 graphs, such as worst approximation reached  
