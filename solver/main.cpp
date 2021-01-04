@@ -6,7 +6,7 @@
 
 #include "Tester.h"
 
-const size_t TEST_PRINT_FREQUENCY = 1;
+const size_t TEST_PRINT_FREQUENCY = 100;
 
 int main(int argc, char **argv) {
   ASSERT(
@@ -23,10 +23,17 @@ int main(int argc, char **argv) {
   }
 
   std::ifstream test_istream(test_path);
-  std::ofstream log_ostream(log_dir + "log.txt", std::ofstream::trunc);
+  std::ofstream log_ostream(log_dir + "log.csv", std::ofstream::trunc);
 
   ASSERT(!test_istream.is_open(), "Can't open test file!")
-  ASSERT(!log_ostream.is_open(), "Can't create log.txt in log directory!")
+  ASSERT(!log_ostream.is_open(), "Can't create log.csv in log directory!")
+
+  // log header
+  log_ostream << "|V|\t|E|\ttime\tapprox";
+  if (!optimal_solver_off) {
+    log_ostream << "\toptimal";
+  }
+  log_ostream << std::endl;
 
   size_t num_tests = 0;
   test_istream >> num_tests;
@@ -56,10 +63,6 @@ int main(int argc, char **argv) {
     }
 
     test(graph, log_ostream, optimal_solver_off);
-
-    if (test_id != num_tests - 1) {
-      log_ostream << std::endl;
-    }
 
     if ((test_id + 1) % TEST_PRINT_FREQUENCY == 0 || test_id == num_tests - 1) {
       std::cerr << test_id + 1 << " tests passed!" << std::endl;
