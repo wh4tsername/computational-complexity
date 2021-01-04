@@ -6,7 +6,7 @@
 
 #include "Tester.h"
 
-const size_t TEST_PRINT_FREQUENCY = 100;
+const size_t TEST_PRINT_FREQUENCY = 1;
 
 int main(int argc, char **argv) {
   ASSERT(
@@ -34,9 +34,9 @@ int main(int argc, char **argv) {
   ASSERT(!log_ostream.is_open(), "Can't create " + name + ".csv in log directory!")
 
   // log header
-  log_ostream << "|V|\t|E|\ttime\tapprox";
+  log_ostream << "|V|\t|E|\tapprox_time\tapprox";
   if (!optimal_solver_off) {
-    log_ostream << "\toptimal";
+    log_ostream << "\toptimal_time\toptimal";
   }
   log_ostream << std::endl;
 
