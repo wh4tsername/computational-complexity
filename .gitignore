@@ -1,3 +1,5 @@
 .idea
 
 cmake-build-debug
+
+notebook/.ipynb_checkpoints

@@ -7,6 +7,8 @@
 - ### random5.txt -> G(100, 0.8) 1000 tests - optimal solver off
 - ### random6.txt -> G(500, 0.8) 25 tests - optimal solver off
 - ### random7.txt -> G(100, 1) 100 tests - optimal solver off
+- ### random8.txt -> G(20, 0.8) 5000 tests - optimal solver off
+- ### random9.txt -> G(500, 0.5) 25 tests - optimal solver off
 
 ## Corner case graphs:
 - ### corner.txt -> 20 graphs, such as worst approximation reached  

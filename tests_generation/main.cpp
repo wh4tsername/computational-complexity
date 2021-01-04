@@ -6,7 +6,7 @@
 
 enum class TEST_CASE { None = 0, Random, Corner };
 
-const size_t TEST_PRINT_FREQUENCY = 10;
+const size_t TEST_PRINT_FREQUENCY = 1;
 
 void corner_test(std::ofstream &ostream, size_t num_tests) {
   ostream << num_tests << std::endl << std::endl;
@@ -41,7 +41,7 @@ void random_test(std::ofstream &ostream, size_t num_tests) {
   ostream << num_tests << std::endl << std::endl;
 
   for (size_t i = 0; i < num_tests; ++i) {
-    RandomVertexWeightedGraph graph(100, 1, {0, 1000}, false);
+    RandomVertexWeightedGraph graph(500, 0.5, {0, 1000}, false);
 
     graph.Print(ostream);
     ostream << std::endl;
